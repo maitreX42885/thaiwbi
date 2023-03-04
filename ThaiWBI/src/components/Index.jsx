@@ -1,16 +1,35 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Component, Suspense, useEffect, useLayoutEffect, useState } from 'react'
 import './css/Index.css'
 import { AiFillFolderOpen } from 'react-icons/ai'
 import { HiLogin, HiLogout } from 'react-icons/hi'
-
+import { BsSunFill } from "react-icons/bs";
 
 const MenuIndex = React.lazy(()=> import('./menu-component/MenuIndex'));
 
 function Index() {
 
+  
+
   const [closeSideBarStatus, setCloseSideBarStatus] = useState(false)
   const [pageCursor, setPageCursor] = useState(0)
+  const [posScroll, setPosScroll] = useState(0)
 
+  //document.documentElement.style.setProperty('--your-variable', '#YOURCOLOR');
+  useLayoutEffect(() => {
+    function updatePosition() {
+      if (window.pageYOffset < 60) {
+        document.documentElement.style.setProperty('--headerColor', '#242424');
+        document.documentElement.style.setProperty('--headerBgColor', '#f5f5f5');
+      }
+      if (window.pageYOffset > 60) {
+        document.documentElement.style.setProperty('--headerColor', '#f5f5f5');
+        document.documentElement.style.setProperty('--headerBgColor', '#242424');
+      }
+    }
+    window.addEventListener('scroll', updatePosition);
+    updatePosition();
+  }, [])
+  
 
   const closeSideBar = () => {
     if (closeSideBarStatus) {
@@ -26,21 +45,18 @@ function Index() {
 
   return (
     <div className='Index'>
-        <div className="index-header">
-          <div className="header-logo"><h2>ThaiWBI</h2></div>
+        <div className="index-header" id='index-header'>
+          <div className="header-logo"><h1>ThaiWBI</h1></div>
           <div className="header-content">
             <ul>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
+              <li><div className=""><BsSunFill /></div></li>
+              
             </ul>
-            <button>Login</button>
-            <button>Register</button>
+            <button id='login'>Sign In</button>
+            <button id='register'>Sign Up</button>
           </div>
         </div>
-        <div className="index-ads">hi ads</div>
+        <div className="index-ads">Ads (Height: 100px)</div>
         <div className="index-body">
           <div className="sidebar-hide" id='sidebar-hide'>
               <button onClick={closeSideBar}><HiLogout /></button>
@@ -129,7 +145,7 @@ function Index() {
             <p>Copyright (C) 2007, Asst.Prof.Dr.Passkorn Roungrong (ThaiWBI.com) . All rights reserved.</p>
           </div>
         </div>
-        d
+        
     </div>
   )
 }

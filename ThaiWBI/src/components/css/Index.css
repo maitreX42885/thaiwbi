@@ -4,7 +4,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    
+    background-color: var(--bgColor);
 }
 
 /* index-header */
@@ -18,8 +18,11 @@
     width: 100%;
     position: sticky;
     top: 0;
-    background-color: #fff;
+    /* background-color: #242424; */
     z-index: 99;
+    transition: all 200ms ease-in-out;
+    color: var(--headerColor);
+    background-color: var(--headerBgColor);
 }
 
 .header-logo {
@@ -37,11 +40,55 @@
 }
 .header-content > ul {
     display: flex;
+    margin-right: 1rem;
 }
 .header-content > ul > li {
     list-style-type: none;
     width: 1rem;
     margin-right: 1rem;
+    color: var(--headerColor);
+}
+.header-content > ul > li > div {
+   
+    color: var(--headerColor);
+    font-size: 1.5rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-content > ul > li > div:hover {
+    cursor: pointer;
+    animation: spin 400ms ease-in-out;
+}
+
+@keyframes spin {
+    from {transform: rotate(0);}    
+    to {transform: rotate(180deg);}
+}
+
+
+#login {
+    border-radius: 100px;
+    width: 5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--headerColor);
+    border: 2px solid var(--headerColor);
+    transition: all 200ms ease-in-out;
+}
+#register {
+    border-radius: 100px;
+    width: 5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: transparent;
+    color: var(--headerBgColor);
+    background-color: var(--headerColor);
+    transition: all 200ms ease-in-out;
 }
 
 /* index-header */
@@ -56,8 +103,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10%;
+    margin: 1rem auto;
+    width: 100%;
+    height: 6.25rem;
+    background-color: #848484;
+    color: #fff;
+    font-size: 2rem;
 }
+
+
 
 /* index-ads */
 
@@ -92,10 +146,11 @@
    
 }
 .sidebar-hide {
+    box-shadow: var(--shadowSmall);
     width: 3rem;
     height: 3rem;
     border-radius: 20px;
-    top: 0;
+    top: 5rem;
     justify-content: center;
     position: sticky;
     align-items: center;
@@ -175,6 +230,11 @@
 
 
 
+
+
+
+
+
 /* index-body */
 
 
@@ -187,7 +247,7 @@
 .container-content-index {
     margin: 1rem;
     margin-top: 0;
-    border: 1px solid red;
+    border: 1px solid transparent;
     height: auto;
     border-radius: 5px;
     box-shadow: var(--shadowSmall);
